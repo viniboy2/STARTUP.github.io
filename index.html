@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Canvas do Projeto: Design de Experiência em E-commerce</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+    <!-- Chosen Palette: Warm Neutrals (Stone, Amber, Slate) -->
+    <!-- Application Structure Plan: A narrative flow SPA starting with The Challenge, presenting Our Solution, visualizing The Impact with an interactive chart, detailing Our Process in a flow diagram, and consolidating The Project Engine (business mechanics) in an accordion. This structure tells a compelling story, which is more engaging and understandable for a user than a static 9-block canvas. -->
+    <!-- Visualization & Content Choices: 1. Impact Chart: Report Info -> 'Redução de abandono em 30%', 'Aumento de conversão'. Goal -> Compare before/after metrics. Viz -> Grouped Bar Chart (Chart.js). Interaction -> Hover tooltips. Justification -> Clear, direct comparison of key value propositions. 2. Process Flow: Report Info -> 5 'Atividades-Chave'. Goal -> Organize sequential steps. Viz -> Styled HTML/Tailwind list. Interaction -> Hover effects. Justification -> More intuitive than a plain list for a process. 3. Project Engine: Report Info -> Recursos, Parceiros, Custos, Receita. Goal -> Organize related info. Viz -> Accordion (HTML/JS). Interaction -> Click to expand/collapse. Justification -> Prevents info overload, keeps UI clean. -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 40vh;
+            max-height: 400px;
+        }
+    </style>
+</head>
+<body class="bg-stone-50 text-slate-800 antialiased">
+
+    <!-- Header & Navigation -->
+    <header class="bg-white/80 backdrop-blur-lg sticky top-0 z-50 shadow-sm">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <h1 class="text-xl font-bold text-amber-600">Projeto E-commerce UX</h1>
+            <div class="hidden md:flex space-x-6">
+                <a href="#desafio" class="text-slate-600 hover:text-amber-600 transition-colors">O Desafio</a>
+                <a href="#solucao" class="text-slate-600 hover:text-amber-600 transition-colors">Nossa Solução</a>
+                <a href="#impacto" class="text-slate-600 hover:text-amber-600 transition-colors">Impacto</a>
+                <a href="#processo" class="text-slate-600 hover:text-amber-600 transition-colors">Processo</a>
+            </div>
+            <button id="mobile-menu-button" class="md:hidden text-slate-600">
+                <span class="w-6 h-0.5 bg-current block mb-1.5"></span>
+                <span class="w-6 h-0.5 bg-current block"></span>
+                <span class="w-4 h-0.5 bg-current block mt-1.5"></span>
+            </button>
+        </nav>
+        <div id="mobile-menu" class="hidden md:hidden px-6 pb-4">
+            <a href="#desafio" class="block py-2 text-slate-600 hover:text-amber-600">O Desafio</a>
+            <a href="#solucao" class="block py-2 text-slate-600 hover:text-amber-600">Nossa Solução</a>
+            <a href="#impacto" class="block py-2 text-slate-600 hover:text-amber-600">Impacto</a>
+            <a href="#processo" class="block py-2 text-slate-600 hover:text-amber-600">Processo</a>
+        </div>
+    </header>
+
+    <main class="container mx-auto px-6 py-12 md:py-20">
+
+        <!-- Hero Section -->
+        <section class="text-center mb-20 md:mb-28">
+            <h2 class="text-4xl md:text-6xl font-bold mb-4 text-slate-900">Design de Experiência em E-commerce</h2>
+            <p class="text-lg md:text-xl text-slate-600 max-w-3xl mx-auto">Otimizando interfaces e personalizando jornadas para transformar a experiência de compra online e impulsionar resultados.</p>
+        </section>
+
+        <!-- The Challenge Section -->
+        <section id="desafio" class="mb-20 md:mb-28">
+            <div class="text-center mb-12">
+                <span class="text-amber-600 font-semibold">O Ponto de Partida</span>
+                <h3 class="text-3xl md:text-4xl font-bold mt-2 text-slate-900">O Desafio do E-commerce Atual</h3>
+                <p class="text-slate-600 mt-4 max-w-2xl mx-auto">Identificamos dois problemas centrais que limitam o potencial de crescimento das lojas virtuais e frustram os consumidores.</p>
+            </div>
+            <div class="grid md:grid-cols-2 gap-8">
+                <div class="bg-white p-8 rounded-xl shadow-lg border border-stone-200">
+                    <div class="flex items-center mb-4">
+                        <span class="text-3xl mr-4">⚠️</span>
+                        <h4 class="text-2xl font-bold text-slate-900">Interfaces Confusas</h4>
+                    </div>
+                    <p class="text-slate-600">Layouts desorganizados, navegação complicada e botões de ação (CTAs) mal posicionados levam à frustração. O resultado direto é uma alta taxa de abandono de carrinho, perda de vendas e uma percepção negativa da marca.</p>
+                </div>
+                <div class="bg-white p-8 rounded-xl shadow-lg border border-stone-200">
+                    <div class="flex items-center mb-4">
+                        <span class="text-3xl mr-4">👤</span>
+                        <h4 class="text-2xl font-bold text-slate-900">Experiência Genérica</h4>
+                    </div>
+                    <p class="text-slate-600">A falta de recomendações de produtos relevantes e ofertas genéricas desengajam o cliente. O usuário não se sente valorizado, o que diminui a chance de compras futuras e a construção de um relacionamento duradouro.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Our Solution Section -->
+        <section id="solucao" class="mb-20 md:mb-28">
+            <div class="text-center mb-12">
+                <span class="text-amber-600 font-semibold">A Estratégia</span>
+                <h3 class="text-3xl md:text-4xl font-bold mt-2 text-slate-900">Nossa Solução Integrada</h3>
+                <p class="text-slate-600 mt-4 max-w-2xl mx-auto">Atacamos os problemas com uma abordagem dupla, focada tanto na usabilidade da interface quanto na personalização da jornada.</p>
+            </div>
+            <div class="grid md:grid-cols-2 gap-8">
+                <div class="bg-white p-8 rounded-xl shadow-lg border border-stone-200">
+                    <div class="flex items-center mb-4">
+                        <span class="text-3xl mr-4">✨</span>
+                        <h4 class="text-2xl font-bold text-slate-900">Otimização da Interface (UI)</h4>
+                    </div>
+                    <p class="text-slate-600">Criamos um design limpo e intuitivo, com fluxos de navegação simplificados. Otimizamos páginas de produtos, aprimoramos a busca e implementamos um processo de checkout em poucas etapas para minimizar o atrito e o abandono.</p>
+                </div>
+                <div class="bg-white p-8 rounded-xl shadow-lg border border-stone-200">
+                    <div class="flex items-center mb-4">
+                        <span class="text-3xl mr-4">🎯</span>
+                        <h4 class="text-2xl font-bold text-slate-900">Personalização da Experiência (UX)</h4>
+                    </div>
+                    <p class="text-slate-600">Implementamos um sistema de recomendação baseado no histórico do usuário. Criamos mensagens e promoções dinâmicas que se adaptam ao comportamento do cliente, aumentando a relevância e o engajamento.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- The Impact Section -->
+        <section id="impacto" class="mb-20 md:mb-28">
+            <div class="text-center mb-12">
+                <span class="text-amber-600 font-semibold">Resultados</span>
+                <h3 class="text-3xl md:text-4xl font-bold mt-2 text-slate-900">O Impacto no Negócio</h3>
+                <p class="text-slate-600 mt-4 max-w-2xl mx-auto">Nossa solução gera valor tangível tanto para a empresa quanto para o consumidor final, criando um ciclo virtuoso de crescimento.</p>
+            </div>
+            <div class="bg-white p-6 md:p-8 rounded-xl shadow-lg border border-stone-200">
+                <div class="chart-container">
+                    <canvas id="impactChart"></canvas>
+                </div>
+            </div>
+        </section>
+
+        <!-- Our Process Section -->
+        <section id="processo" class="mb-20 md:mb-28">
+            <div class="text-center mb-12">
+                <span class="text-amber-600 font-semibold">Como Fazemos</span>
+                <h3 class="text-3xl md:text-4xl font-bold mt-2 text-slate-900">Nosso Processo de Atuação</h3>
+                <p class="text-slate-600 mt-4 max-w-2xl mx-auto">Seguimos um processo estruturado em 5 etapas para garantir que nossas soluções sejam baseadas em dados e validadas por usuários reais.</p>
+            </div>
+            <div class="relative">
+                <div class="hidden md:block absolute top-1/2 left-0 w-full h-0.5 bg-stone-300 -translate-y-1/2"></div>
+                <div class="grid md:grid-cols-5 gap-8 relative">
+                    <div class="flex flex-col items-center text-center">
+                        <div class="w-16 h-16 rounded-full bg-amber-600 text-white flex items-center justify-center text-2xl font-bold mb-4 z-10">1</div>
+                        <h4 class="font-bold text-lg mb-2">Pesquisa</h4>
+                        <p class="text-slate-600 text-sm">Entender as dores dos clientes e analisar as melhores práticas do mercado.</p>
+                    </div>
+                    <div class="flex flex-col items-center text-center">
+                        <div class="w-16 h-16 rounded-full bg-amber-600 text-white flex items-center justify-center text-2xl font-bold mb-4 z-10">2</div>
+                        <h4 class="font-bold text-lg mb-2">Análise</h4>
+                        <p class="text-slate-600 text-sm">Identificar gargalos e pontos de abandono no funil de vendas com dados.</p>
+                    </div>
+                    <div class="flex flex-col items-center text-center">
+                        <div class="w-16 h-16 rounded-full bg-amber-600 text-white flex items-center justify-center text-2xl font-bold mb-4 z-10">3</div>
+                        <h4 class="font-bold text-lg mb-2">Design</h4>
+                        <p class="text-slate-600 text-sm">Criar mockups e protótipos de novas interfaces e fluxos de navegação.</p>
+                    </div>
+                    <div class="flex flex-col items-center text-center">
+                        <div class="w-16 h-16 rounded-full bg-amber-600 text-white flex items-center justify-center text-2xl font-bold mb-4 z-10">4</div>
+                        <h4 class="font-bold text-lg mb-2">Testes</h4>
+                        <p class="text-slate-600 text-sm">Validar as soluções propostas com usuários reais para coletar feedback.</p>
+                    </div>
+                    <div class="flex flex-col items-center text-center">
+                        <div class="w-16 h-16 rounded-full bg-amber-600 text-white flex items-center justify-center text-2xl font-bold mb-4 z-10">5</div>
+                        <h4 class="font-bold text-lg mb-2">Relatório</h4>
+                        <p class="text-slate-600 text-sm">Apresentar os resultados e as propostas de melhoria final para implementação.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Project Engine Section -->
+        <section id="motor" class="mb-12">
+            <div class="text-center mb-12">
+                <span class="text-amber-600 font-semibold">A Base do Projeto</span>
+                <h3 class="text-3xl md:text-4xl font-bold mt-2 text-slate-900">O Motor do Projeto</h3>
+                <p class="text-slate-600 mt-4 max-w-2xl mx-auto">Os componentes fundamentais que sustentam e viabilizam nossa estratégia de negócio e execução.</p>
+            </div>
+            <div class="max-w-3xl mx-auto">
+                <div class="accordion-item border-b border-stone-200 py-4">
+                    <button class="accordion-header w-full flex justify-between items-center text-left text-xl font-semibold">
+                        Recursos-Chave
+                        <span class="accordion-icon transition-transform transform">+</span>
+                    </button>
+                    <div class="accordion-content overflow-hidden max-h-0 transition-all duration-500 ease-in-out">
+                        <ul class="list-disc list-inside text-slate-600 pt-4 pl-2 space-y-2">
+                            <li><b>Tecnologia:</b> Softwares de design (Figma), ferramentas de análise (Google Analytics, Hotjar) e plataformas de teste (Maze).</li>
+                            <li><b>Pessoas:</b> Equipe multidisciplinar com Designers UX/UI, Analistas de Dados, Pesquisadores e Especialistas em CRO.</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="accordion-item border-b border-stone-200 py-4">
+                    <button class="accordion-header w-full flex justify-between items-center text-left text-xl font-semibold">
+                        Parceiros-Chave
+                        <span class="accordion-icon transition-transform transform">+</span>
+                    </button>
+                    <div class="accordion-content overflow-hidden max-h-0 transition-all duration-500 ease-in-out">
+                         <ul class="list-disc list-inside text-slate-600 pt-4 pl-2 space-y-2">
+                            <li><b>Time de Desenvolvimento:</b> Essencial para a implementação técnica das soluções.</li>
+                            <li><b>Time de Marketing:</b> Fornece insights sobre o público-alvo e a jornada do cliente.</li>
+                            <li><b>Gerência de Produtos:</b> Alinha a visão do projeto com os objetivos de negócio.</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="accordion-item border-b border-stone-200 py-4">
+                    <button class="accordion-header w-full flex justify-between items-center text-left text-xl font-semibold">
+                        Estrutura de Custos
+                        <span class="accordion-icon transition-transform transform">+</span>
+                    </button>
+                    <div class="accordion-content overflow-hidden max-h-0 transition-all duration-500 ease-in-out">
+                        <ul class="list-disc list-inside text-slate-600 pt-4 pl-2 space-y-2">
+                            <li><b>Software:</b> Assinaturas de ferramentas de design e análise de dados.</li>
+                            <li><b>Mão de Obra:</b> Salários da equipe de UX/UI envolvida no projeto.</li>
+                            <li><b>Testes:</b> Recrutamento e pagamento de participantes para testes de usabilidade.</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="accordion-item border-b border-stone-200 py-4">
+                    <button class="accordion-header w-full flex justify-between items-center text-left text-xl font-semibold">
+                        Fontes de Receita
+                        <span class="accordion-icon transition-transform transform">+</span>
+                    </button>
+                    <div class="accordion-content overflow-hidden max-h-0 transition-all duration-500 ease-in-out">
+                        <ul class="list-disc list-inside text-slate-600 pt-4 pl-2 space-y-2">
+                            <li><b>Serviço de Consultoria:</b> Cobrança por projeto de otimização completa do e-commerce.</li>
+                            <li><b>Modelo de Assinatura (SaaS):</b> Serviço contínuo de análise e otimização da experiência.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="bg-slate-800 text-white">
+        <div class="container mx-auto px-6 py-8 text-center">
+            <p>&copy; 2025 Apresentação do Projeto de UX. Todos os direitos reservados.</p>
+            <p class="text-sm text-slate-400 mt-2">Criado para a apresentação do dia 19/08/2025.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Mobile Menu Toggle
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+            mobileMenuButton.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+
+            // Accordion Logic
+            const accordionItems = document.querySelectorAll('.accordion-item');
+            accordionItems.forEach(item => {
+                const header = item.querySelector('.accordion-header');
+                const content = item.querySelector('.accordion-content');
+                const icon = item.querySelector('.accordion-icon');
+                header.addEventListener('click', () => {
+                    const isOpen = content.style.maxHeight && content.style.maxHeight !== '0px';
+                    
+                    // Close all other items
+                    accordionItems.forEach(otherItem => {
+                        if (otherItem !== item) {
+                            otherItem.querySelector('.accordion-content').style.maxHeight = '0px';
+                            otherItem.querySelector('.accordion-icon').classList.remove('rotate-45');
+                        }
+                    });
+
+                    // Toggle current item
+                    if (isOpen) {
+                        content.style.maxHeight = '0px';
+                        icon.classList.remove('rotate-45');
+                    } else {
+                        content.style.maxHeight = content.scrollHeight + 'px';
+                        icon.classList.add('rotate-45');
+                    }
+                });
+            });
+
+            // Chart.js Impact Chart
+            const ctx = document.getElementById('impactChart').getContext('2d');
+            
+            const data = {
+                labels: ['Taxa de Abandono de Carrinho', 'Taxa de Conversão', 'Fidelidade do Cliente'],
+                datasets: [
+                    {
+                        label: 'Antes da Otimização',
+                        data: [65, 2.5, 30],
+                        backgroundColor: 'rgba(100, 116, 139, 0.6)', // slate-500
+                        borderColor: 'rgba(100, 116, 139, 1)',
+                        borderWidth: 1,
+                        borderRadius: 4
+                    },
+                    {
+                        label: 'Após a Otimização',
+                        data: [45, 4.0, 55],
+                        backgroundColor: 'rgba(217, 119, 6, 0.8)', // amber-600
+                        borderColor: 'rgba(217, 119, 6, 1)',
+                        borderWidth: 1,
+                        borderRadius: 4
+                    }
+                ]
+            };
+
+            const options = {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        ticks: {
+                            callback: function(value) {
+                                return value + '%';
+                            }
+                        },
+                        grid: {
+                            color: 'rgba(203, 213, 225, 0.5)'
+                        }
+                    },
+                    x: {
+                       grid: {
+                            display: false
+                        }
+                    }
+                },
+                plugins: {
+                    legend: {
+                        position: 'top',
+                    },
+                    title: {
+                        display: true,
+                        text: 'Melhoria de Métricas Chave (%)',
+                        font: {
+                            size: 18
+                        },
+                        padding: {
+                            top: 10,
+                            bottom: 30
+                        }
+                    },
+                    tooltip: {
+                        callbacks: {
+                            label: function(context) {
+                                let label = context.dataset.label || '';
+                                if (label) {
+                                    label += ': ';
+                                }
+                                if (context.parsed.y !== null) {
+                                    label += context.parsed.y + '%';
+                                }
+                                return label;
+                            }
+                        }
+                    }
+                }
+            };
+
+            new Chart(ctx, {
+                type: 'bar',
+                data: data,
+                options: options
+            });
+        });
+    </script>
+</body>
+</html>
